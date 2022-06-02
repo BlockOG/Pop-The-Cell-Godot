@@ -12,8 +12,11 @@ onready var buttons1 = get_node("CenterContainer/VBoxContainer/Vertical/Progress
 onready var buttons2 = get_node("CenterContainer/VBoxContainer/Vertical/ProgressBar2/Margin/Vertical")
 onready var buttons3 = get_node("CenterContainer/VBoxContainer/Vertical/ProgressBar3/Margin/Vertical")
 
-# (Re)Start button
+# Other nodes
 onready var reStartButton = get_node("CenterContainer/VBoxContainer/(Re)Start")
+onready var verticalContainer = get_node("CenterContainer/VBoxContainer")
+# Get the original size of verticalContainer
+onready var origVerticalContainerSize = verticalContainer.rect_size
 
 # Create the scores
 var score = 0
@@ -29,6 +32,9 @@ func _ready():
 		buttons1.get_child(i).connect("pressed", self, "_on_1_pressed", [i])
 		buttons2.get_child(i).connect("pressed", self, "_on_2_pressed", [i])
 		buttons3.get_child(i).connect("pressed", self, "_on_3_pressed", [i])
+	
+	# Set width of window to not be the smallest possible
+	OS.window_size[0] = 1024
 
 
 func create_timer():
@@ -77,7 +83,6 @@ func do_random_add(buttons):
 	# There's a 1/4 chance that one button is going to be added
 	if (randi() % 4) == 0:
 		for i in range(6, -1, -1):
-			print(i)
 			if buttons.get_child(i).disabled:
 				buttons.get_child(i).disabled = false
 				break
