@@ -1,1 +1,4 @@
-Build/*
+Build/
+android/
+popthecell.keystore
+export_presets.cfg
