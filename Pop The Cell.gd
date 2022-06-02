@@ -5,9 +5,9 @@ onready var scoreLabel = get_node("CenterContainer/VBoxContainer/Score")
 onready var highScoreLabel = get_node("CenterContainer/VBoxContainer/Highscore")
 
 # Progress buttons
-onready var progressBarButton1 = get_node("CenterContainer/VBoxContainer/VBoxContainer/ProgressBar/Button")
-onready var progressBarButton2 = get_node("CenterContainer/VBoxContainer/VBoxContainer/ProgressBar2/Button")
-onready var progressBarButton3 = get_node("CenterContainer/VBoxContainer/VBoxContainer/ProgressBar3/Button")
+onready var buttons1 = get_node("CenterContainer/VBoxContainer/VBoxContainer/ProgressBar/Margin/Horizontal")
+onready var buttons2 = get_node("CenterContainer/VBoxContainer/VBoxContainer/ProgressBar2/Margin/Horizontal")
+onready var buttons3 = get_node("CenterContainer/VBoxContainer/VBoxContainer/ProgressBar3/Margin/Horizontal")
 
 # (Re)Start button
 onready var reStartButton = get_node("CenterContainer/VBoxContainer/(Re)Start")
@@ -15,15 +15,23 @@ onready var reStartButton = get_node("CenterContainer/VBoxContainer/(Re)Start")
 # Create the scores
 var score = 0
 var highscore = score
+
 # Create the variables for "time" management
-var started = false
 var timer = null
 var tick = 0
+var started = false
 
-# Create the progresses
-var progress1 = 0
-var progress2 = 0
-var progress3 = 0
+# Create progresses
+var progress1 = [false,false,false,false,false,false,false]
+var progress2 = [false,false,false,false,false,false,false]
+var progress3 = [false,false,false,false,false,false,false]
+
+
+func _ready():
+	for i in range(7):
+		buttons1.get_child(i).connect("pressed", self, "_on_1_pressed", [i])
+		buttons2.get_child(i).connect("pressed", self, "_on_2_pressed", [i])
+		buttons3.get_child(i).connect("pressed", self, "_on_3_pressed", [i])
 
 
 func create_timer():
@@ -44,9 +52,10 @@ func _on_ReStart_pressed():
 	# Reset everything
 	tick = 0
 	score = 0
-	progress1 = 0
-	progress2 = 0
-	progress3 = 0
+	for i in range(7):
+		progress1[i] = false
+		progress2[i] = false
+		progress3[i] = false
 	
 	# Start the ticks
 	create_timer()
@@ -60,10 +69,13 @@ func _on_ReStart_pressed():
 
 
 func do_random_add(progress):
-	# There's a 1/4 chance that 1 is going to be added to the progress of a button
+	# There's a 1/4 chance that one button is going to be added
 	if (randi() % 4) == 0:
-		progress += 1
-		if progress >= 7: return [7, true]
+		for i in range(7):
+			if !progress[i]:
+				progress[i] = true
+				break
+		if progress[6]: return [[true,true,true,true,true,true,true], true]
 	
 	return [progress, false]
 
@@ -109,20 +121,20 @@ func _process(_delta):
 	if score > highscore: highscore = score
 	highScoreLabel.text = str(highscore)
 	
-	# Set button widths
-	progressBarButton1.rect_size.x = 10 + progress1 * 43
-	progressBarButton2.rect_size.x = 10 + progress2 * 43
-	progressBarButton3.rect_size.x = 10 + progress3 * 43
+	# Sync the progresses
+	for i in range(7):
+		buttons1.get_child(i).disabled = !progress1[i]
+		buttons2.get_child(i).disabled = !progress2[i]
+		buttons3.get_child(i).disabled = !progress3[i]
 
 
-func do_button(progress):
+func do_button(progress, i):
 	if started:
-		progress -= 1
-		if progress < 0: progress = 0
+		progress[i] = false
 	return progress
 
 
 # Subtract 1 from the buttons if the game is started
-func _on_1_pressed(): progress1 = do_button(progress1)
-func _on_2_pressed(): progress2 = do_button(progress2)
-func _on_3_pressed(): progress3 = do_button(progress3)
+func _on_1_pressed(i): progress1 = do_button(progress1, i)
+func _on_2_pressed(i): progress2 = do_button(progress2, i)
+func _on_3_pressed(i): progress3 = do_button(progress3, i)

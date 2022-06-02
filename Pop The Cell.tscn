@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://JetBrainsMono-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Pop The Cell.gd" type="Script" id=2]
@@ -10,20 +10,20 @@ bg_color = Color( 0.188235, 0.192157, 0.254902, 1 )
 size = 40
 font_data = ExtResource( 1 )
 
+[sub_resource type="StyleBoxFlat" id=28]
+bg_color = Color( 0.239216, 0.239216, 0.305882, 1 )
+
 [sub_resource type="StyleBoxEmpty" id=22]
 
 [sub_resource type="StyleBoxFlat" id=24]
 bg_color = Color( 0.270588, 0.317647, 0.466667, 1 )
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
 border_color = Color( 0.8, 0.8, 0.8, 0 )
 
 [sub_resource type="StyleBoxFlat" id=26]
 bg_color = Color( 0.239216, 0.239216, 0.305882, 1 )
 
 [sub_resource type="Theme" id=27]
+Button/styles/disabled = SubResource( 28 )
 Button/styles/focus = SubResource( 22 )
 Button/styles/hover = SubResource( 24 )
 Button/styles/normal = SubResource( 24 )
@@ -141,32 +141,200 @@ margin_right = 311.0
 margin_bottom = 53.0
 rect_min_size = Vector2( 311, 53 )
 
-[node name="Button" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar"]
+[node name="Margin" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -301.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="Horizontal" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar/Margin"]
+margin_right = 301.0
+margin_bottom = 43.0
+custom_constants/separation = 0
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar/Margin/Horizontal"]
+margin_right = 43.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+disabled = true
+
+[node name="Button2" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar/Margin/Horizontal"]
+margin_left = 43.0
+margin_right = 86.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+disabled = true
+
+[node name="Button3" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar/Margin/Horizontal"]
+margin_left = 86.0
+margin_right = 129.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+disabled = true
+
+[node name="Button4" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar/Margin/Horizontal"]
+margin_left = 129.0
+margin_right = 172.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+disabled = true
+
+[node name="Button5" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar/Margin/Horizontal"]
+margin_left = 172.0
+margin_right = 215.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+disabled = true
+
+[node name="Button6" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar/Margin/Horizontal"]
+margin_left = 215.0
+margin_right = 258.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+disabled = true
+
+[node name="Button7" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar/Margin/Horizontal"]
+margin_left = 258.0
+margin_right = 301.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+disabled = true
 
 [node name="ProgressBar2" type="Panel" parent="CenterContainer/VBoxContainer/VBoxContainer"]
 margin_top = 58.0
 margin_right = 311.0
 margin_bottom = 111.0
-rect_min_size = Vector2( 0, 53 )
+rect_min_size = Vector2( 311, 53 )
 
-[node name="Button" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar2"]
+[node name="Margin" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -301.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="Horizontal" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar2/Margin"]
+margin_right = 301.0
+margin_bottom = 43.0
+custom_constants/separation = 0
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar2/Margin/Horizontal"]
+margin_right = 43.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+disabled = true
+
+[node name="Button2" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar2/Margin/Horizontal"]
+margin_left = 43.0
+margin_right = 86.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+disabled = true
+
+[node name="Button3" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar2/Margin/Horizontal"]
+margin_left = 86.0
+margin_right = 129.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+disabled = true
+
+[node name="Button4" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar2/Margin/Horizontal"]
+margin_left = 129.0
+margin_right = 172.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+disabled = true
+
+[node name="Button5" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar2/Margin/Horizontal"]
+margin_left = 172.0
+margin_right = 215.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+disabled = true
+
+[node name="Button6" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar2/Margin/Horizontal"]
+margin_left = 215.0
+margin_right = 258.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+disabled = true
+
+[node name="Button7" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar2/Margin/Horizontal"]
+margin_left = 258.0
+margin_right = 301.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+disabled = true
 
 [node name="ProgressBar3" type="Panel" parent="CenterContainer/VBoxContainer/VBoxContainer"]
 margin_top = 116.0
 margin_right = 311.0
 margin_bottom = 169.0
-rect_min_size = Vector2( 0, 53 )
+rect_min_size = Vector2( 311, 53 )
 
-[node name="Button" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar3"]
+[node name="Margin" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar3"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -301.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="Horizontal" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar3/Margin"]
+margin_right = 301.0
+margin_bottom = 43.0
+custom_constants/separation = 0
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar3/Margin/Horizontal"]
+margin_right = 43.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+disabled = true
+
+[node name="Button2" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar3/Margin/Horizontal"]
+margin_left = 43.0
+margin_right = 86.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+disabled = true
+
+[node name="Button3" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar3/Margin/Horizontal"]
+margin_left = 86.0
+margin_right = 129.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+disabled = true
+
+[node name="Button4" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar3/Margin/Horizontal"]
+margin_left = 129.0
+margin_right = 172.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+disabled = true
+
+[node name="Button5" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar3/Margin/Horizontal"]
+margin_left = 172.0
+margin_right = 215.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+disabled = true
+
+[node name="Button6" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar3/Margin/Horizontal"]
+margin_left = 215.0
+margin_right = 258.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+disabled = true
+
+[node name="Button7" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar3/Margin/Horizontal"]
+margin_left = 258.0
+margin_right = 301.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+disabled = true
 
 [node name="Score" type="Label" parent="CenterContainer/VBoxContainer"]
 margin_top = 230.0
@@ -191,7 +359,4 @@ margin_bottom = 312.0
 theme = SubResource( 18 )
 text = "Start"
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar/Button" to="." method="_on_1_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar2/Button" to="." method="_on_2_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/ProgressBar3/Button" to="." method="_on_3_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/(Re)Start" to="." method="_on_ReStart_pressed"]
