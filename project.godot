@@ -16,10 +16,11 @@ config/icon="res://icon.png"
 
 [display]
 
-window/size/width=288
+window/size/width=338
+window/size/height=535
 window/handheld/orientation="sensor_portrait"
-window/stretch/mode="viewport"
-window/stretch/aspect="keep_height"
+window/stretch/mode="2d"
+window/stretch/aspect="expand"
 
 [physics]
 
