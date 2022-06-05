@@ -72,10 +72,9 @@ func _ready():
 	load_hi()
 	
 	# Connect all the buttons
-	for i in range(7):
-		buttons1.get_child(i).connect("pressed", self, "_on_1_pressed", [i])
-		buttons2.get_child(i).connect("pressed", self, "_on_2_pressed", [i])
-		buttons3.get_child(i).connect("pressed", self, "_on_3_pressed", [i])
+	for j in range(3):
+		for i in range(7):
+			buttons[j].get_child(i).connect("pressed", self, "_on_" + str(j + 1) + "_pressed", [i])
 	
 	# Set size of window to not be the size of the
 	OS.window_size = Vector2(1024, 600)
@@ -113,10 +112,9 @@ func _on_ReStart_pressed():
 	# Reset everything
 	tick = 0
 	score = 0
-	for i in range(7):
-		buttons1.get_child(i).disabled = true
-		buttons2.get_child(i).disabled = true
-		buttons3.get_child(i).disabled = true
+	for j in range(3):
+		for i in range(7):
+			buttons[j].get_child(i).disabled = true
 	
 	dirs = [0, 0, 0]
 	
