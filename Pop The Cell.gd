@@ -112,7 +112,6 @@ func _on_ReStart_pressed():
 	
 	# Make the (Re)Start button invisible and set it's text to Restart
 	reStartButton.disabled = true
-	reStartButton.modulate.a = 0
 	reStartButton.text = "Restart"
 
 
@@ -138,6 +137,7 @@ func do_random_add(index):
 				break
 		if !buttons[index].get_child(0).disabled: return true
 	
+	reStartButton.grab_focus()
 	return false
 
 
@@ -155,7 +155,6 @@ func _on_Timer_timeout(timer):
 	# a score bigger or equal to 7, stop the game and show the restart button
 	if do_random_add(0) or do_random_add(1) or do_random_add(2):
 		reStartButton.disabled = false
-		reStartButton.modulate.a = 1
 		save_hi()
 		return
 	
@@ -172,6 +171,7 @@ func _process(_delta):
 func do_button(index, i):
 	if reStartButton.disabled:
 		buttons[index].get_child(i).disabled = true
+		reStartButton.grab_focus()
 		create_sound()
 
 

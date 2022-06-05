@@ -43,10 +43,6 @@ content_margin_right = 6.0
 content_margin_top = 4.0
 content_margin_bottom = 4.0
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
 border_color = Color( 0.14, 0.161, 0.217, 1 )
 
 [sub_resource type="StyleBoxFlat" id=21]
@@ -58,10 +54,6 @@ content_margin_right = 6.0
 content_margin_top = 4.0
 content_margin_bottom = 4.0
 bg_color = Color( 0.15, 0.1725, 0.2325, 1 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
 border_color = Color( 0.4, 0.4225, 0.4825, 1 )
 
 [sub_resource type="StyleBoxFlat" id=16]
@@ -70,10 +62,6 @@ content_margin_right = 6.0
 content_margin_top = 4.0
 content_margin_bottom = 4.0
 bg_color = Color( 0.15, 0.1725, 0.2325, 1 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
 border_color = Color( 0.125, 0.14375, 0.19375, 1 )
 
 [sub_resource type="StyleBoxFlat" id=17]
@@ -82,18 +70,14 @@ content_margin_right = 6.0
 content_margin_top = 4.0
 content_margin_bottom = 4.0
 bg_color = Color( 0.15, 0.1725, 0.2325, 1 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
 border_color = Color( 0.41, 0.61, 0.91, 1 )
 
 [sub_resource type="Theme" id=18]
-Button/colors/font_color = Color( 0.8, 0.8075, 0.8275, 1 )
-Button/colors/font_color_disabled = Color( 1, 1, 1, 0.3 )
-Button/colors/font_color_focus = Color( 0.88, 0.8845, 0.8965, 1 )
-Button/colors/font_color_hover = Color( 0.88, 0.8845, 0.8965, 1 )
-Button/colors/font_color_pressed = Color( 0.41, 0.61, 0.91, 1 )
+Button/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
+Button/colors/font_color_disabled = Color( 0.901961, 0.901961, 0.901961, 0 )
+Button/colors/font_color_focus = Color( 0.878431, 0.878431, 0.878431, 1 )
+Button/colors/font_color_hover = Color( 0.941176, 0.941176, 0.941176, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 Button/colors/icon_color_hover = Color( 1.15, 1.15, 1.15, 1 )
 Button/colors/icon_color_pressed = Color( 0.4715, 0.7015, 1.0465, 1 )
 Button/fonts/font = SubResource( 13 )
@@ -411,6 +395,12 @@ align = 1
 margin_top = 455.0
 margin_right = 288.0
 margin_bottom = 485.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 theme = SubResource( 18 )
 text = "Start"
 
