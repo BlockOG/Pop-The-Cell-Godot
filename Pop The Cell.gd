@@ -8,18 +8,18 @@ onready var scoreLabel = get_node("CenterContainer/VBoxContainer/Scores/Score")
 onready var highScoreLabel = get_node("CenterContainer/VBoxContainer/Scores/Highscore")
 
 # Progress buttons
-onready var buttons1 = get_node("CenterContainer/VBoxContainer/Vertical/Vertical/ProgressBar/Margin/Vertical")
-onready var buttons2 = get_node("CenterContainer/VBoxContainer/Vertical/Vertical2/ProgressBar/Margin/Vertical")
-onready var buttons3 = get_node("CenterContainer/VBoxContainer/Vertical/Vertical3/ProgressBar/Margin/Vertical")
-
-onready var buttons = [buttons1, buttons2, buttons3]
+onready var buttons = [
+	get_node("CenterContainer/VBoxContainer/Vertical/Vertical/ProgressBar/Margin/Vertical"),
+	get_node("CenterContainer/VBoxContainer/Vertical/Vertical2/ProgressBar/Margin/Vertical"),
+	get_node("CenterContainer/VBoxContainer/Vertical/Vertical3/ProgressBar/Margin/Vertical")
+]
 
 # Textures
-onready var generator1 = get_node("CenterContainer/VBoxContainer/Vertical/Vertical/Texture")
-onready var generator2 = get_node("CenterContainer/VBoxContainer/Vertical/Vertical2/Texture")
-onready var generator3 = get_node("CenterContainer/VBoxContainer/Vertical/Vertical3/Texture")
-
-onready var generators = [generator1, generator2, generator3]
+onready var generators = [
+	get_node("CenterContainer/VBoxContainer/Vertical/Vertical/Texture"),
+	get_node("CenterContainer/VBoxContainer/Vertical/Vertical2/Texture"),
+	get_node("CenterContainer/VBoxContainer/Vertical/Vertical3/Texture")
+]
 
 # Other nodes
 onready var reStartButton = get_node("CenterContainer/VBoxContainer/(Re)Start")
@@ -32,33 +32,42 @@ onready var origVerticalContainerSize = verticalContainer.rect_size
 var score = 0
 var highscore = score
 
+# Directions for generators
 var dirs = [0, 0, 0]
 
+# Tick variables
 var tick = 0
 var tick_rate = 4
 var tick_time = 1.0 / tick_rate
 
 
 func load_hi():
+	# Create file var
 	var file = File.new()
 	
+	# Check if highscore file exists, if so read it's contents and set the highscore to that
 	if file.file_exists("user://highscore"):
 		file.open("user://highscore", file.READ)
 		highscore = file.get_64()
 		highScoreLabel.text = str(highscore)
 	
+	# Close the file
 	file.close()
 
 func save_hi():
+	# Create file var
 	var file = File.new()
 	
+	# Open the highscore file in write mode and write the highscore to it
 	file.open("user://highscore", file.WRITE)
 	file.store_64(highscore)
 	
+	# Close the file
 	file.close()
 
 
 func _ready():
+	# Randomize and load highscore
 	randomize()
 	load_hi()
 	
@@ -68,7 +77,7 @@ func _ready():
 		buttons2.get_child(i).connect("pressed", self, "_on_2_pressed", [i])
 		buttons3.get_child(i).connect("pressed", self, "_on_3_pressed", [i])
 	
-	# Set width of window to not be the smallest possible
+	# Set size of window to not be the size of the
 	OS.window_size = Vector2(1024, 600)
 
 
@@ -86,6 +95,9 @@ func create_timer():
 	timer.start()
 
 func create_sound():
+	# Create a new AudioStreamPlayer, make it automatically play when added,
+	# set the audio to the previously loaded sound, connect the finished signal
+	# to _on_Audio_finished and finally add it to the scene tree
 	var a = AudioStreamPlayer.new()
 	a.autoplay = true
 	a.stream = sound
@@ -93,6 +105,7 @@ func create_sound():
 	get_parent().add_child(a)
 
 func _on_Audio_finished(audio):
+	# Remove the audio...
 	get_parent().remove_child(audio)
 
 
@@ -121,6 +134,8 @@ func do_random_add(index):
 		dirs[index] += 1
 	else:
 		dirs[index] -= 1
+	
+	# Interpolate the generator movement
 	tween.interpolate_property(
 		generators[index],
 		"rect_rotation",
@@ -130,14 +145,17 @@ func do_random_add(index):
 	)
 	tween.start()
 	
+	# If the generator is looking up create a new button (cell) and check if we got to the top,
+	# if so return true and grab the focus of the (Re)Start button
 	if abs(dirs[index] % 4) == 0:
 		for i in range(6, -1, -1):
 			if buttons[index].get_child(i).disabled:
 				buttons[index].get_child(i).disabled = false
 				break
-		if !buttons[index].get_child(0).disabled: return true
+		if !buttons[index].get_child(0).disabled:
+			reStartButton.grab_focus()
+			return true
 	
-	reStartButton.grab_focus()
 	return false
 
 
@@ -169,6 +187,7 @@ func _process(_delta):
 
 
 func do_button(index, i):
+	# If the game is started remove the clicked button (cell) and create the sound (also grab the focus of the (Re)Start button)
 	if reStartButton.disabled:
 		buttons[index].get_child(i).disabled = true
 		reStartButton.grab_focus()
