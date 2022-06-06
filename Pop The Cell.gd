@@ -37,7 +37,7 @@ var dirs = [0, 0, 0]
 
 # Tick variables
 var tick = 0
-var tick_rate = 4
+var tick_rate = 5
 var tick_time = 1.0 / tick_rate
 
 
@@ -163,7 +163,7 @@ func _on_Timer_timeout(timer):
 	get_parent().remove_child(timer)
 	
 	# Score updates every 3 ticks
-	if tick % 3 == 0:
+	if tick % 4 == 0:
 		score += 1
 		if score > highscore: highscore = score
 	
